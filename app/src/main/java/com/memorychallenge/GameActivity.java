@@ -1,0 +1,165 @@
+package com.memorychallenge;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.widget.Button;
+import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameActivity extends Activity {
+
+    private long sequenceInterval, blinkDuration;
+    private Sequence sequence;
+    private int currentStep = 0;
+    private List<Button> buttons = new ArrayList<>();
+    private Handler handler = new Handler(Looper.getMainLooper());
+    private Vibrator vib;
+    private SensorHandler sensorHandler;
+    private boolean inputEnabled = false;
+    private boolean waitingForRotation = false;
+    private ArrayList<String> playerNames;
+    private List<Integer> playerScores = new ArrayList<>();
+    private int currentPlayer = 0;
+    private String difficulty;
+    private TextView messageText;
+
+    @Override
+    protected void onCreate(Bundle b) {
+        super.onCreate(b);
+        setContentView(R.layout.activity_game);
+        vib = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        messageText = findViewById(R.id.messageText);
+        buttons.add(findViewById(R.id.btnRed));
+        buttons.add(findViewById(R.id.btnGreen));
+        buttons.add(findViewById(R.id.btnBlue));
+        buttons.add(findViewById(R.id.btnYellow));
+        playerNames = getIntent().getStringArrayListExtra("playerNames");
+        difficulty = getIntent().getStringExtra("difficulty");
+        for(int i = 0; i < playerNames.size(); i++) playerScores.add(0);
+        configureTimings(difficulty);
+        for(int i = 0; i < buttons.size(); i++) {
+            final int idx = i;
+            buttons.get(i).setOnClickListener(v -> onColorPressed(idx));
+        }
+        sequence = new Sequence();
+        sensorHandler = new SensorHandler(this);
+        sensorHandler.setListener(new SensorHandler.TiltListener() {
+            public void onTiltRight() { validate(); }
+            public void onTiltLeft() { endTurn(); }
+            public void onRotationCompleted() {
+                if (waitingForRotation) {
+                    waitingForRotation = false;
+                    handler.post(() -> {
+                        messageText.setVisibility(View.GONE);
+                        showSequence();
+                    });
+                }
+            }
+        });
+        startPlayer();
+    }
+
+    private void startPlayer() {
+        currentStep = 0;
+        Toast.makeText(this, "Tour de " + playerNames.get(currentPlayer), Toast.LENGTH_SHORT).show();
+        sequence.generate(playerScores.get(currentPlayer) + 1);
+        nextRound();
+    }
+
+    private void nextRound() {
+        currentStep = 0;
+        sequence.generate(playerScores.get(currentPlayer) + 1);
+        if (playerNames.size() > 1) {
+            waitingForRotation = true;
+            sensorHandler.resetRotationCount();
+            messageText.setVisibility(View.VISIBLE);
+            messageText.setText(playerNames.get(currentPlayer) + ", retourne l'appareil 2 fois pour voir la séquence !");
+        } else {
+            showSequence();
+        }
+    }
+
+    private void showSequence() {
+        inputEnabled = false;
+        List<Integer> seq = sequence.getItems();
+        for(int i = 0; i < seq.size(); i++) {
+            int idx = seq.get(i);
+            handler.postDelayed(() -> blink(idx), i * sequenceInterval);
+        }
+        handler.postDelayed(() -> inputEnabled = true, seq.size() * sequenceInterval);
+    }
+
+    private void blink(int i){
+        Button b=buttons.get(i);
+        b.setAlpha(0.3f);
+        handler.postDelayed(()->b.setAlpha(1f), blinkDuration);
+    }
+
+    private void onColorPressed(int i){
+        if(!inputEnabled) return;
+        blink(i);
+        if(sequence.getItems().get(currentStep)==i){
+            currentStep++;
+            if(currentStep==sequence.getItems().size()){
+                vib.vibrate(VibrationEffect.createOneShot(100,VibrationEffect.DEFAULT_AMPLITUDE));
+                playerScores.set(currentPlayer, playerScores.get(currentPlayer)+1);
+                nextRound();
+            }
+        } else endTurn();
+    }
+
+    private void validate(){
+        if(inputEnabled&&currentStep==sequence.getItems().size()) nextRound();
+    }
+
+    private void endTurn(){
+        vib.vibrate(VibrationEffect.createOneShot(200,VibrationEffect.DEFAULT_AMPLITUDE));
+        // Next player or show final ranking
+        if(currentPlayer<playerNames.size()-1){
+            currentPlayer++;
+            startPlayer();
+        } else showFinalRanking();
+    }
+
+    private void showFinalRanking() {
+        if (playerNames.size() <= 1) {
+            // Solo mode: save and show solo score
+            ScoreManager sm = new ScoreManager(this);
+            sm.saveScore(playerScores.get(0), playerNames.get(0));
+            Intent intent = new Intent(this, ScoreActivity.class);
+            intent.putExtra("score", playerScores.get(0));
+            intent.putStringArrayListExtra("playerNames", playerNames);
+            intent.putExtra("difficulty", difficulty);
+            startActivity(intent);
+        } else {
+            // Multi mode: show multi-player ranking
+            Intent i = new Intent(this, MultiScoreActivity.class);
+            i.putStringArrayListExtra("playerNames", playerNames);
+            i.putIntegerArrayListExtra("playerScores", new ArrayList<>(playerScores));
+            i.putExtra("difficulty", difficulty);
+            startActivity(i);
+        }
+        finish();
+    }
+
+    private void configureTimings(String level){
+        switch(level){
+            case "Facile": sequenceInterval=1200; blinkDuration=600; break;
+            case "Difficile": sequenceInterval=800; blinkDuration=300; break;
+            default: sequenceInterval=1000; blinkDuration=500;
+        }
+        Toast.makeText(this,"Difficulté: "+level,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override protected void onResume(){ super.onResume(); sensorHandler.register(); }
+    @Override protected void onPause(){ super.onPause(); sensorHandler.unregister(); }
+}

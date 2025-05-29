@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/GameText"
+            android:layout_marginBottom="32dp"
+            android:text="Classement"
+            android:textSize="36sp"
+            android:textStyle="bold"/>
+
+        <ListView
+            android:id="@+id/playerList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@color/colorPrimary"
+            android:dividerHeight="1dp"
+            android:padding="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/replayButton"
+                style="@style/MenuButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Rejouer"/>
+
+            <Button
+                android:id="@+id/menuButton"
+                style="@style/MenuButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Menu"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

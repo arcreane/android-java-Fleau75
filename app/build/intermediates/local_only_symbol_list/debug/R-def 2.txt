@@ -1,0 +1,27 @@
+R_DEF: Internal format may change without notice
+local
+color design_default_color_primary
+color design_default_color_primary_dark
+color design_default_color_secondary
+drawable button_shape_blue
+drawable button_shape_green
+drawable button_shape_red
+drawable button_shape_yellow
+id btnBlue
+id btnGreen
+id btnRed
+id btnYellow
+id finalScore
+id listScores
+id listScoresMulti
+id menuButton
+id menuMultiButton
+id playButton
+id replayButton
+id replayMultiButton
+layout activity_game
+layout activity_main
+layout activity_multi_score
+layout activity_score
+string app_name
+style AppTheme

@@ -1,0 +1,97 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.memorychallenge"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.VIBRATE" />
+11-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:4:5-66
+11-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:4:22-63
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:5:5-67
+12-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:5:22-64
+13    <uses-permission android:name="android.permission.BODY_SENSORS" />
+13-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:6:5-71
+13-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:6:22-68
+14
+15    <permission
+15-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+16        android:name="com.memorychallenge.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+16-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+17        android:protectionLevel="signature" />
+17-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+18
+19    <uses-permission android:name="com.memorychallenge.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+19-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+19-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+20
+21    <application
+21-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:8:5-26:19
+22        android:allowBackup="true"
+22-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:9:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.12.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/c9869f8c4d9356332c1528d1fd4426b1/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+24        android:debuggable="true"
+25        android:extractNativeLibs="false"
+26        android:icon="@mipmap/ic_launcher"
+26-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:10:9-43
+27        android:label="@string/app_name"
+27-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:11:9-41
+28        android:testOnly="true"
+29        android:theme="@style/AppTheme" >
+29-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:12:9-40
+30        <activity
+30-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:14:9-20:20
+31            android:name="com.memorychallenge.MainActivity"
+31-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:14:19-47
+32            android:exported="true" >
+32-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:15:13-36
+33            <intent-filter>
+33-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:16:13-19:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:17:17-69
+34-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:17:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:18:17-77
+36-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:18:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity android:name="com.memorychallenge.GameActivity" />
+39-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:22:9-50
+39-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:22:19-47
+40        <activity android:name="com.memorychallenge.ScoreActivity" />
+40-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:23:9-51
+40-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:23:19-48
+41        <activity android:name="com.memorychallenge.MultiScoreActivity" />
+41-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:24:9-56
+41-->/Users/florianmartinez/Desktop/MemoryFleau   /app/src/main/AndroidManifest.xml:24:19-53
+42
+43        <provider
+43-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+44            android:name="androidx.startup.InitializationProvider"
+44-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+45            android:authorities="com.memorychallenge.androidx-startup"
+45-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+46            android:exported="false" >
+46-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+47            <meta-data
+47-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+48                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+48-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+49                android:value="androidx.startup" />
+49-->[androidx.emoji2:emoji2:1.2.0] /Users/florianmartinez/.gradle/caches/8.10/transforms/849b529038db7ebe75f545499a423374/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+50            <meta-data
+50-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/florianmartinez/.gradle/caches/8.10/transforms/84b34b6eaaa70a9564507de08dd66b97/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+51                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+51-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/florianmartinez/.gradle/caches/8.10/transforms/84b34b6eaaa70a9564507de08dd66b97/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+52                android:value="androidx.startup" />
+52-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/florianmartinez/.gradle/caches/8.10/transforms/84b34b6eaaa70a9564507de08dd66b97/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+53        </provider>
+54    </application>
+55
+56</manifest>

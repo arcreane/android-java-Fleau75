@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgroundColor">#F5F5F5</color>
+    <color name="buttonBlue">#2196F3</color>
+    <color name="buttonGreen">#4CAF50</color>
+    <color name="buttonRed">#F44336</color>
+    <color name="buttonYellow">#FFC107</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="menuButtonScore">#FF9800</color>
+    <color name="menuButtonStart">#4CAF50</color>
+    <color name="textColor">#212121</color>
+    <string name="app_name">MemoryChallenge</string>
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
+    <style name="GameButton">
+        <item name="android:layout_width">110dp</item>
+        <item name="android:layout_height">110dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+    <style name="GameText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="MenuButton">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/button_shape_menu</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+</resources>
