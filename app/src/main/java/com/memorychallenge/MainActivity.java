@@ -8,16 +8,20 @@ import android.widget.EditText;
 import android.widget.Button;
 import java.util.ArrayList;
 
+// Activité principale qui gère l'écran d'accueil du jeu
 public class MainActivity extends Activity {
 
+    // Initialisation de l'interface utilisateur
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        // Configuration du bouton pour commencer une partie
         Button playButton = findViewById(R.id.playButton);
         playButton.setOnClickListener(v -> showModeDialog());
 
+        // Configuration du bouton pour voir les scores
         Button leaderboardButton = findViewById(R.id.leaderboardButton);
         leaderboardButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
@@ -26,6 +30,7 @@ public class MainActivity extends Activity {
         });
     }
 
+    // Affiche la boîte de dialogue pour choisir le mode de jeu (Solo ou Multi-joueurs)
     private void showModeDialog() {
         String[] modes = {"Solo", "Multi-joueurs"};
         new AlertDialog.Builder(this)
@@ -41,6 +46,7 @@ public class MainActivity extends Activity {
             .show();
     }
 
+    // Affiche la boîte de dialogue pour choisir le nombre de joueurs en mode multi
     private void promptPlayerCount() {
         String[] options = {"1 Joueur","2 Joueurs","3 Joueurs","4 Joueurs"};
         new AlertDialog.Builder(this)
@@ -53,6 +59,7 @@ public class MainActivity extends Activity {
             .show();
     }
 
+    // Demande le nom de chaque joueur de manière récursive
     private void promptNames(int total, ArrayList<String> names, int current) {
         final EditText nameInput = new EditText(this);
         nameInput.setHint("Nom joueur " + current);
@@ -71,6 +78,7 @@ public class MainActivity extends Activity {
             .show();
     }
 
+    // Affiche la boîte de dialogue pour choisir la difficulté du jeu
     private void promptDifficulty(ArrayList<String> names) {
         String[] levels = {"Facile","Normal","Difficile"};
         new AlertDialog.Builder(this)

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+// Activité qui affiche le classement des joueurs en mode multijoueur
 public class MultiScoreActivity extends Activity {
 
     @Override
@@ -19,33 +20,35 @@ public class MultiScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_score);
 
+        // Récupération des données de la partie
         ArrayList<String> names = getIntent().getStringArrayListExtra("playerNames");
         ArrayList<Integer> scores = getIntent().getIntegerArrayListExtra("playerScores");
         String difficulty = getIntent().getStringExtra("difficulty");
 
+        // Configuration du titre avec le niveau de difficulté
         TextView titleText = findViewById(R.id.titleText);
         titleText.setText("Classement - " + difficulty);
 
-        // Sort players by score descending
+        // Trie les joueurs par score décroissant
         ArrayList<Integer> indices = new ArrayList<>();
         for (int i = 0; i < scores.size(); i++) {
             indices.add(i);
         }
         Collections.sort(indices, (a, b) -> scores.get(b) - scores.get(a));
 
-        // Build display list with ranking
+        // Construit la liste d'affichage avec le classement
         ArrayList<String> display = new ArrayList<>();
         for (int i = 0; i < indices.size(); i++) {
             int idx = indices.get(i);
-            String rank = (i + 1) + ". ";
+            String rank = (i + 1) + ". ";  // Ajoute le rang (1., 2., etc.)
             display.add(rank + names.get(idx) + " : " + scores.get(idx));
         }
 
-        // Show in ListView
+        // Affiche le classement dans la ListView
         ListView listView = findViewById(R.id.playerList);
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, display));
 
-        // Menu button: go back to MainActivity
+        // Configuration du bouton menu pour retourner à l'écran principal
         Button menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
@@ -54,7 +57,7 @@ public class MultiScoreActivity extends Activity {
             finish();
         });
 
-        // Replay button: start a new game with same players and difficulty
+        // Configuration du bouton rejouer pour démarrer une nouvelle partie avec les mêmes paramètres
         Button replayButton = findViewById(R.id.replayButton);
         replayButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, GameActivity.class);
